@@ -38,9 +38,7 @@ const MenuCard = ({ data }: { data: MenuCardInterface }) => {
           ${data.price}
         </Text>
       </View>
-      <Text>
         <Paragraph para={data.description} />
-      </Text>
     </View>
   );
 };

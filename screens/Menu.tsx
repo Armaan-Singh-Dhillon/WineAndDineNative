@@ -5,7 +5,8 @@ import H1 from "../styling Components/H1";
 import H4 from "../styling Components/H4";
 import wine from "../localData/wineAndCocktails";
 import cocktail from "../localData/cocktail";
-import { MenuCardInterface } from "../localData/wineAndCocktails";
+import apetizers from "../localData/apetizers";
+import mainCourses from "../localData/Maincourse";
 const Menu: React.FunctionComponent = () => {
   const handleCLick = () => {};
 
@@ -29,24 +30,39 @@ const Menu: React.FunctionComponent = () => {
             <H3 heading="Wine & Beer" />
 
             {wine.map((item) => {
-              return (
-                <>
-                  <MenuCard data={item} key={item.id} />
-                </>
-              );
+              return <MenuCard data={item} key={item.id.toString()} />;
             })}
-            <View style={{ width:'100%', marginBottom: 60, marginTop: 60 }}>
-              <Image resizeMode="contain" source={require("../assets/background/bottle.png")} />
+            <View style={{ width: "100%", marginBottom: 60, marginTop: 60 }}>
+              <Image
+                resizeMode="contain"
+                source={require("../assets/background/bottle.png")}
+              />
             </View>
 
             {cocktail.map((item) => {
-              return (
-                <>
-                  <MenuCard data={item} key={item.id} />
-                </>
-              );
+              return <MenuCard data={item} key={item.id.toString()} />;
             })}
           </View>
+        </View>
+        <View style={{ flex: 1, marginBottom: 10, marginTop: 60 }}>
+          <View>
+            <H1 heading={"Appetizers"} />
+          </View>
+        </View>
+        <View style={{ flex: 1 }}>
+          {apetizers.map((item) => {
+            return <MenuCard data={item} key={item.id.toString()} />;
+          })}
+        </View>
+        <View style={{ flex: 1, marginBottom: 10, marginTop: 60 }}>
+          <View>
+            <H1 heading={"Main Courses"} />
+          </View>
+        </View>
+        <View style={{ flex: 1 }}>
+          {mainCourses.map((item) => {
+            return <MenuCard data={item} key={item.id.toString()} />;
+          })}
         </View>
       </ScrollView>
     </>
