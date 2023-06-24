@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { StyleSheet, Text, View, Image, Button, StatusBar } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -9,16 +9,13 @@ import Shop from "./screens/Shop";
 import Home from "./screens/Home";
 import Menu from "./screens/Menu";
 
- export type DishStackParamList = {
-   Shop: undefined;
-   Dish: undefined;
- };
+export type DishStackParamList = {
+  Shop: undefined;
+  Dish: undefined;
+};
 
 const Stack = createStackNavigator<DishStackParamList>();
 const Drawer = createDrawerNavigator();
-
-
-
 
 export default function App() {
   const [loading, setloading] = useState(true);
@@ -58,24 +55,37 @@ export default function App() {
     );
   } else {
     return (
-      <NavigationContainer>
-        <Drawer.Navigator
-          screenOptions={{
-            headerTitleStyle: {
-              fontFamily: "primary",
-              color: "#fff",
-            },
-            headerTintColor: "#fff",
-            headerStyle: {
-              backgroundColor: "#242424",
-            },
-          }}
-        >
-          <Drawer.Screen name="Home" component={Home} />
-          <Drawer.Screen name="Menu" component={Menu} />
-          <Drawer.Screen name="Shop" component={ShopScreens} />
-        </Drawer.Navigator>
-      </NavigationContainer>
+      <>
+        <StatusBar barStyle={"light-content"} />
+        <NavigationContainer>
+          <Drawer.Navigator
+            screenOptions={{
+              headerTitleStyle: {
+                fontFamily: "primary",
+                color: "#fff",
+              },
+              headerTintColor: "#fff",
+              headerStyle: {
+                backgroundColor: "#242424",
+              },
+              drawerStyle: {
+                backgroundColor: "#242424",
+                width: 240,
+              },
+              drawerActiveTintColor: "#dcc87a",
+              drawerInactiveTintColor: "#aaa",
+              drawerLabelStyle:{
+                fontFamily:'primary',
+                fontSize:20
+              }
+            }}
+          >
+            <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Menu" component={Menu} />
+            <Drawer.Screen name="Shop" component={ShopScreens} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </>
     );
   }
 }
