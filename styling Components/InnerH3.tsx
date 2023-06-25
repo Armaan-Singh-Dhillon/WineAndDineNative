@@ -4,7 +4,7 @@ interface Heading {
   heading: string;
 }
 
-const InnerH1: React.FunctionComponent<Heading> = (props: Heading) => {
+const InnerH3: React.FunctionComponent<Heading> = (props: Heading) => {
   return (
     <>
       <View style={{ flexDirection: "row" }}>
@@ -14,9 +14,8 @@ const InnerH1: React.FunctionComponent<Heading> = (props: Heading) => {
             flexWrap: "wrap",
             fontFamily: "secondary",
             color: "#fff",
-            fontSize: 25,
-            marginBottom: 20,
-            textAlign: "center",
+            fontSize: 18,
+            marginBottom: 15,
           }}
         >
           {props.heading}
@@ -26,4 +25,4 @@ const InnerH1: React.FunctionComponent<Heading> = (props: Heading) => {
   );
 };
 
-export default InnerH1;
+export default InnerH3;

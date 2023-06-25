@@ -33,7 +33,14 @@ export default function App() {
   const ShopScreens = () => {
     return (
       <>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            cardStyle: {
+              backgroundColor: "black",
+            },
+          }}
+        >
           <Stack.Screen name="Shop" component={Shop} />
           <Stack.Screen name="Dish" component={Dish} />
         </Stack.Navigator>
@@ -74,15 +81,15 @@ export default function App() {
               },
               drawerActiveTintColor: "#dcc87a",
               drawerInactiveTintColor: "#aaa",
-              drawerLabelStyle:{
-                fontFamily:'primary',
-                fontSize:20
-              }
+              drawerLabelStyle: {
+                fontFamily: "primary",
+                fontSize: 20,
+              },
             }}
           >
-            <Drawer.Screen name="Home" component={Home} />
-            <Drawer.Screen name="Menu" component={Menu} />
-            <Drawer.Screen name="Shop" component={ShopScreens} />
+            {/* <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Menu" component={Menu} /> */}
+            <Drawer.Screen name="Our Shop" component={ShopScreens} />
           </Drawer.Navigator>
         </NavigationContainer>
       </>
