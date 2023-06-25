@@ -17,6 +17,7 @@ import Ingredients from "../components/Ingredients";
 import Supplements from "../components/Supplements";
 import Review from "../components/Review";
 import SalesAndOffers from "../components/SalesAndOffers";
+import Toppings from "../components/Toppings";
 const Dish: React.FC = () => {
   return (
     <>
@@ -39,6 +40,7 @@ const Dish: React.FC = () => {
               <Tag text="spicy" />
               <Tag text="Chilly" />
             </View>
+            <Toppings />
             <Cook />
             <Ingredients />
             <Supplements />
