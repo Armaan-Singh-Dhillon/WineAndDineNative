@@ -1,14 +1,5 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  ScrollView,
-} from "react-native";
-import H1 from "../styling Components/H1";
+import { Text, View } from "react-native";
 import H2 from "../styling Components/H2";
-import H3 from "../styling Components/H3";
 import H4 from "../styling Components/H4";
 import Paragraph from "../styling Components/Paragraph";
 
@@ -57,12 +48,12 @@ const Supplements = () => {
               Food Drinks
             </Text>
             <View>
-              {dishData.supplements.foodDrinks.map((el) => {
+              {dishData.supplements.foodDrinks.map((el, i) => {
                 return (
-                  <>
+                  <View key={i}>
                     <H4 heading={el.name} />
                     <Paragraph para={el.description} />
-                  </>
+                  </View>
                 );
               })}
             </View>
@@ -80,12 +71,12 @@ const Supplements = () => {
               Beverages
             </Text>
             <View>
-              {dishData.supplements.beverages.map((el) => {
+              {dishData.supplements.beverages.map((el, i) => {
                 return (
-                  <>
+                  <View key={i}>
                     <H4 heading={el.name} />
                     <Paragraph para={el.description} />
-                  </>
+                  </View>
                 );
               })}
             </View>

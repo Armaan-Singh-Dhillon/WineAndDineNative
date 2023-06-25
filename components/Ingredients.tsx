@@ -55,10 +55,10 @@ const Ingredients: React.FunctionComponent = () => {
       <View>
         <H2 heading="Ingredients" />
         <View>
-          {Object.entries(dishData.ingredients).map(([key, value]) => {
+          {Object.entries(dishData.ingredients).map(([key, value], i) => {
             if (value.length != 0) {
               return (
-                <>
+                <View key={i}>
                   <Text
                     style={{
                       color: "#dcc87a",
@@ -69,20 +69,17 @@ const Ingredients: React.FunctionComponent = () => {
                     {key}
                   </Text>
 
-                  {value.map((el) => {
+                  {value.map((el, i) => {
                     return (
-                      <>
-                        <View>
-                          <H4 heading={el.name} />
-                          <Paragraph para={el.description} />
-                        </View>
-                      </>
+                      <View key={i}>
+                        <H4 heading={el.name} />
+                        <Paragraph para={el.description} />
+                      </View>
                     );
                   })}
-                </>
+                </View>
               );
             }
-            return <></>;
           })}
         </View>
       </View>

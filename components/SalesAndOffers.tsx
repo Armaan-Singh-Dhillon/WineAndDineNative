@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  ScrollView,
-} from "react-native";
+import { Text, View } from "react-native";
 import H2 from "../styling Components/H2";
 import H4 from "../styling Components/H4";
 import Paragraph from "../styling Components/Paragraph";

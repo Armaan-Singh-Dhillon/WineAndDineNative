@@ -1,15 +1,7 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  ScrollView,
-} from "react-native";
+import { Text, View } from "react-native";
 import H2 from "../styling Components/H2";
 import H4 from "../styling Components/H4";
 import Paragraph from "../styling Components/Paragraph";
-import InnerH3 from "../styling Components/InnerH3";
 import StarRating from "./Star";
 const Review = () => {
   const dishData = {
@@ -66,9 +58,9 @@ const Review = () => {
     <>
       <View>
         <H2 heading="Top Reviews" />
-        {slicedReviews.map((el) => {
+        {slicedReviews.map((el, i) => {
           return (
-            <>
+            <View key={i}>
               <H4 heading={el.name} />
               <StarRating rating={el.rating} />
               <Text
@@ -81,7 +73,7 @@ const Review = () => {
                 {el.date}
               </Text>
               <Paragraph para={el.review} />
-            </>
+            </View>
           );
         })}
       </View>

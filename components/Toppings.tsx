@@ -15,23 +15,21 @@ const Toppings: React.FC = () => {
       <View>
         <H2 heading="Toppings And Add-Ons" />
 
-        {Object.entries(dishData.options).map(([key, value]) => {
+        {Object.entries(dishData.options).map(([key, value], i) => {
           if (value.length != 0) {
             return (
-              <>
+              <View key={i}>
                 <H4 heading={key} />
-                {value.map((el) => {
+                {value.map((el, i) => {
                   return (
-                    <>
+                    <View key={i}>
                       <Checks text={el} />
-                    </>
+                    </View>
                   );
                 })}
-              </>
+              </View>
             );
           }
-
-          return <></>;
         })}
       </View>
     </>
