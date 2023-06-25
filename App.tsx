@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, Image, Button, StatusBar } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  StatusBar,
+  SafeAreaView,
+} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -86,36 +94,37 @@ export default function App() {
   } else {
     return (
       <>
-        <StatusBar barStyle={"light-content"} />
-        <NavigationContainer>
-          <Drawer.Navigator
-            screenOptions={{
-              headerTitleStyle: {
-                fontFamily: "primary",
-                color: "#fff",
-              },
-              headerTintColor: "#fff",
-              headerStyle: {
-                backgroundColor: "#242424",
-              },
-              drawerStyle: {
-                backgroundColor: "#242424",
-                width: 240,
-              },
-              drawerActiveTintColor: "#dcc87a",
-              drawerInactiveTintColor: "#aaa",
-              drawerLabelStyle: {
-                fontFamily: "primary",
-                fontSize: 20,
-              },
-            }}
-          >
-            {/* <Drawer.Screen name="Home" component={Home} />
+        <SafeAreaView style={{ flex: 1 }}>
+          <NavigationContainer>
+            <Drawer.Navigator
+              screenOptions={{
+                headerTitleStyle: {
+                  fontFamily: "primary",
+                  color: "#fff",
+                },
+                headerTintColor: "#fff",
+                headerStyle: {
+                  backgroundColor: "#242424",
+                },
+                drawerStyle: {
+                  backgroundColor: "#242424",
+                  width: 240,
+                },
+                drawerActiveTintColor: "#dcc87a",
+                drawerInactiveTintColor: "#aaa",
+                drawerLabelStyle: {
+                  fontFamily: "primary",
+                  fontSize: 20,
+                },
+              }}
+            >
+              {/* <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="Menu" component={Menu} /> */}
-            {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
-            <Drawer.Screen name="Our Blog" component={BlogScreens} />
-          </Drawer.Navigator>
-        </NavigationContainer>
+              {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
+              <Drawer.Screen name="Our Blog" component={BlogScreens} />
+            </Drawer.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
       </>
     );
   }

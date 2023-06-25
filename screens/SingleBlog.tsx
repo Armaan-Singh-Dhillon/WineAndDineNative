@@ -1,14 +1,32 @@
-import { Text, View, Image, ScrollView, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 import InnerH1 from "../styling Components/InnerH1";
 import { Ionicons } from "@expo/vector-icons";
 import Paragraph from "../styling Components/Paragraph";
-import H2 from "../styling Components/H2";
-import H3 from "../styling Components/H3";
+
+import { Video, ResizeMode } from "expo-av";
 import Pointers from "../styling Components/Points";
+import React, { useState } from "react";
 const SingleBlog = () => {
+  const [videoSource, setVideoSource] = useState(
+    require("../assets/blogs/delicious-desserts/video.mp4")
+  );
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: "black", padding: 15 }}>
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: "black",
+          paddingLeft: 15,
+          paddingRight: 15,
+        }}
+      >
         <View style={{ position: "relative" }}>
           <View
             style={{
@@ -74,7 +92,36 @@ const SingleBlog = () => {
         <View>
           <View style={styles.inner}></View>
         </View>
-        <View style={styles.qouteContainer}></View>
+
+        <Video
+          source={videoSource}
+          style={{ width: "100%", height: 300 }}
+          shouldPlay
+          isLooping
+        />
+        <Paragraph para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+
+        <View style={styles.qouteContainer}>
+          <Text style={styles.quote}>
+            hole-in-wall eateries to hidden gems, join us on a journey to find
+            the hidden treasures that will tantalize your taste buds and leave
+            you hungry.”
+          </Text>
+          <Text style={styles.nameline}>-Annalisa L</Text>
+        </View>
+        <Paragraph para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+        <Text style={styles.heading}>
+          Uncovering Hidden Gems In The Restaurant Scene
+        </Text>
+        <View>
+          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+        </View>
+        <View style={styles.qouteContainer}>
+          <Text style={styles.quote}>Final words</Text>
+        </View>
+        <Text style={styles.nameline}>-Annalisa L</Text>
       </ScrollView>
     </>
   );

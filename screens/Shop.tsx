@@ -4,7 +4,14 @@ import ShopCard from "../components/ShopCard";
 const Shop: React.FunctionComponent = () => {
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: "black", padding: 15 }}>
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: "black",
+          paddingLeft: 15,
+          paddingRight: 15,
+        }}
+      >
         <View
           style={{
             flex: 1,
@@ -33,9 +40,9 @@ const Shop: React.FunctionComponent = () => {
             />
           </View>
 
-          <ShopCard/>
-          <ShopCard/>
-          <ShopCard/>
+          <ShopCard />
+          <ShopCard />
+          <ShopCard />
         </View>
       </ScrollView>
     </>

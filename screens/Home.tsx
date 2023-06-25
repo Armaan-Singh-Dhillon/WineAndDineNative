@@ -10,14 +10,21 @@ const Home: React.FunctionComponent = () => {
   const handleCLick = () => {};
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: "black", padding: 15 }}>
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: "black",
+          paddingLeft: 15,
+          paddingRight: 15,
+        }}
+      >
         <View
           style={{
             flex: 1,
             justifyContent: "space-between",
           }}
         >
-          <View style={{ flex: 1 ,marginBottom:60,marginTop:60}}>
+          <View style={{ flex: 1, marginBottom: 60, marginTop: 60 }}>
             <H1 heading={"Food That Surprise You"} />
 
             <Paragraph para="Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus" />
@@ -25,7 +32,7 @@ const Home: React.FunctionComponent = () => {
 
             <CardItem />
           </View>
-          <View style={{flex:1 ,marginBottom:60,marginTop:60}}>
+          <View style={{ flex: 1, marginBottom: 60, marginTop: 60 }}>
             <H4 heading={"Chef's Word"} />
             <H2 heading={"What We Believe In"} />
             <Quotes />

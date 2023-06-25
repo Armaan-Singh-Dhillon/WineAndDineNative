@@ -56,7 +56,8 @@ const Dish: React.FC = () => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    padding: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   tagContainer: {
     flexDirection: "row",
