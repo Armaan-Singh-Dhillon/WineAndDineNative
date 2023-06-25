@@ -10,7 +10,6 @@ const H4: React.FunctionComponent<Heading> = (props: Heading) => {
       <View style={{ flexDirection: "row" }}>
         <Text
           style={{
-            flex: 1,
             flexWrap: "wrap",
             fontFamily: "primary",
             color: "#fff",

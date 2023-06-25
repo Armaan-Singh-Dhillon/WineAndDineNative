@@ -8,13 +8,19 @@ import Dish from "./screens/Dish";
 import Shop from "./screens/Shop";
 import Home from "./screens/Home";
 import Menu from "./screens/Menu";
-
+import Blog from "./screens/Blog";
+import SingleBlog from "./screens/SingleBlog";
 export type DishStackParamList = {
   Shop: undefined;
   Dish: undefined;
 };
+export type BlogStackParamList = {
+  Blog: undefined;
+  SingleBlog: undefined;
+};
 
 const Stack = createStackNavigator<DishStackParamList>();
+const BlogStack = createStackNavigator<BlogStackParamList>();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -44,6 +50,23 @@ export default function App() {
           <Stack.Screen name="Shop" component={Shop} />
           <Stack.Screen name="Dish" component={Dish} />
         </Stack.Navigator>
+      </>
+    );
+  };
+  const BlogScreens = () => {
+    return (
+      <>
+        <BlogStack.Navigator
+          screenOptions={{
+            headerShown: false,
+            cardStyle: {
+              backgroundColor: "black",
+            },
+          }}
+        >
+          <BlogStack.Screen name="Blog" component={Blog} />
+          <BlogStack.Screen name="SingleBlog" component={SingleBlog} />
+        </BlogStack.Navigator>
       </>
     );
   };
@@ -89,7 +112,8 @@ export default function App() {
           >
             {/* <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="Menu" component={Menu} /> */}
-            <Drawer.Screen name="Our Shop" component={ShopScreens} />
+            {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
+            <Drawer.Screen name="Our Blog" component={BlogScreens} />
           </Drawer.Navigator>
         </NavigationContainer>
       </>
