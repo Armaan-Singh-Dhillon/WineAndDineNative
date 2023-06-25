@@ -15,8 +15,7 @@ const Paragraph: React.FunctionComponent<para> = (props: para) => {
             fontFamily: "ternary",
             color: "#aaa",
             fontSize: 12,
-            marginBottom:20
-            
+            marginBottom: 20,
           }}
         >
           {props.para}

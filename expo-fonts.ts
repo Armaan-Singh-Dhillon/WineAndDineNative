@@ -7,6 +7,7 @@ export const loadFonts = async () => {
     'primary': require('./assets/fonts/CormorantUpright-Regular.ttf'),
     'secondary':require('./assets/fonts/NotoSans-Light.ttf'),
     'ternary':require('./assets/fonts/OpenSans-Medium.ttf'),
+    'cursive':require('./assets/fonts/Sacramento-Regular.ttf'),
     // Add more font variants if needed
   });
 };
