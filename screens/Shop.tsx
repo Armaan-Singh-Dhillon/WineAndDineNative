@@ -1,7 +1,10 @@
 import { Text, View, ScrollView, Image } from "react-native";
 import InnerH1 from "../styling Components/InnerH1";
 import ShopCard from "../components/ShopCard";
+import { MyContext } from "../MyContext";
+import { useContext } from "react";
 const Shop: React.FunctionComponent = () => {
+  const { dishData } = useContext(MyContext);
   return (
     <>
       <ScrollView
@@ -39,10 +42,6 @@ const Shop: React.FunctionComponent = () => {
               source={require("../assets/banner/01-min-scaled.jpg")}
             />
           </View>
-
-          <ShopCard />
-          <ShopCard />
-          <ShopCard />
         </View>
       </ScrollView>
     </>
