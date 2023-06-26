@@ -2,7 +2,16 @@ import { Text, View } from "react-native";
 import H2 from "../styling Components/H2";
 import H4 from "../styling Components/H4";
 import Paragraph from "../styling Components/Paragraph";
-const SalesAndOffers = () => {
+
+type SalesAndOffer = {
+  salesAndOffers: {
+    title: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+  }[];
+};
+const SalesAndOffers: React.FC<SalesAndOffer> = (props: SalesAndOffer) => {
   const dishData = {
     salesAndOffers: [
       {
@@ -45,7 +54,7 @@ const SalesAndOffers = () => {
   };
   const currentWeekNumber = getCurrentWeekNumber();
   const randomOffer =
-    dishData.salesAndOffers[currentWeekNumber % dishData.salesAndOffers.length];
+    props.salesAndOffers[currentWeekNumber % dishData.salesAndOffers.length];
 
   return (
     <>

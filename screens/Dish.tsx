@@ -3,7 +3,6 @@ import H2 from "../styling Components/H2";
 import StarRating from "../components/Star";
 import InnerH3 from "../styling Components/InnerH3";
 import Paragraph from "../styling Components/Paragraph";
-import H3 from "../styling Components/H3";
 import Tag from "../styling Components/Tag";
 import Cook from "../components/Cook";
 import Ingredients from "../components/Ingredients";
@@ -11,37 +10,57 @@ import Supplements from "../components/Supplements";
 import Review from "../components/Review";
 import SalesAndOffers from "../components/SalesAndOffers";
 import Toppings from "../components/Toppings";
-import { useMyContext } from "../MyContext";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { DishStackParamList } from "../App";
+import { useContext } from "react";
+import { MyContext } from "../MyContext";
+import DishType from "../types/dish";
+
 const Dish: React.FC = () => {
-  const { dishData } = useMyContext();
-  console.log(dishData);
+  const { dishData } = useContext(MyContext);
+  const route = useRoute<RouteProp<DishStackParamList, "Dish">>();
+  const desiredId = route.params.id;
+
+  const filteredObject = dishData.find((el: DishType) => el.id === desiredId)!;
+
   return (
     <>
       <ScrollView style={styles.root}>
         <View>
           <View>
             <Image
+              style={{ width: "100%", height: 350 }}
               resizeMode="cover"
-              style={{ width: "100%", height: 300 }}
-              source={require("../assets/dishes/butter-chicken.jpg")}
+              source={{
+                uri: filteredObject.image,
+              }}
             />
-            <H2 heading="Butter-Chicken" />
-            <StarRating rating={4} />
-            <InnerH3 heading="Price : $14" />
-            <Paragraph para="Savor the flavors of a perfectly grilled salmon fillet. The salmon is seasoned with a delightful lemon pepper blend, resulting in a juicy and flavorful dish." />
-            <H3 heading="Type : Main Course" />
+            <H2 heading={filteredObject.name} />
+            <StarRating rating={filteredObject.reviews.averageRating} />
+            <InnerH3 heading={`Price : $${filteredObject.price}`} />
+            <Paragraph para={filteredObject.description} />
             <InnerH3 heading="Tags" />
             <View style={styles.tagContainer}>
-              <Tag text="Aromatic" />
-              <Tag text="spicy" />
-              <Tag text="Chilly" />
+              {filteredObject.tags.map((el, i) => {
+                return <Tag text={el} key={i} />;
+              })}
             </View>
-            <Toppings />
-            <Cook />
-            <Ingredients />
-            <Supplements />
-            <Review />
-            <SalesAndOffers />
+            <Toppings options={filteredObject.options} />
+            <Cook
+              averageTimeToCook={filteredObject.averageTimeToCook}
+              deliveryTime={filteredObject.deliveryTime}
+              fatContent={filteredObject.fatContent}
+              proteinContent={filteredObject.protein}
+            />
+            <Ingredients ingredients={filteredObject.ingredients} />
+            <Supplements
+              beverages={filteredObject.supplements.beverages}
+              foodDrinks={filteredObject.supplements.foodDrinks}
+            />
+
+            <Review reviews={filteredObject.reviews.customerReviews} />
+
+            <SalesAndOffers salesAndOffers={filteredObject.salesAndOffers} />
           </View>
         </View>
       </ScrollView>

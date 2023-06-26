@@ -13,10 +13,11 @@ import SingleBlog from "./screens/SingleBlog";
 import { getDocs, collection } from "firebase/firestore";
 import db from "./firebaseConfig";
 import { MyContext } from "./MyContext";
+import DishType from "./types/dish";
 
 export type DishStackParamList = {
   Shop: undefined;
-  Dish: undefined;
+  Dish: { id: string };
 };
 export type BlogStackParamList = {
   Blog: undefined;
@@ -29,13 +30,14 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   const [loading, setloading] = useState(true);
-  const [dishData, setDishData] = useState([]);
-  const updateValue = (newValue: any) => {
+  const [dishData, setDishData] = useState<DishType[]>([]);
+
+  const updateValue = (newValue: DishType[]) => {
     setDishData(newValue);
   };
   const fetchData = async () => {
     let blogDataTemp: any = [];
-    let productData: any = [];
+    let productData: DishType[] = [];
     // const querySnapshot1 = await getDocs(collection(db, "Blog"));
     // querySnapshot1.forEach((doc) => {
     //   blogDataTemp = [...blogDataTemp, { id: doc.id, ...doc.data() }];
@@ -45,7 +47,7 @@ export default function App() {
     querySnapshot2.forEach((doc) => {
       productData = [
         ...productData,
-        { id: doc.id, show: false, ...doc.data() },
+        { id: doc.id, show: false, ...doc.data() } as DishType,
       ];
     });
     setDishData(productData);
@@ -143,10 +145,10 @@ export default function App() {
                   },
                 }}
               >
-                <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Menu" component={Menu} />
+                {/* <Drawer.Screen name="Home" component={Home} /> */}
+                {/* <Drawer.Screen name="Menu" component={Menu} /> */}
                 <Drawer.Screen name="Our Shop" component={ShopScreens} />
-                <Drawer.Screen name="Our Blog" component={BlogScreens} />
+                {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
               </Drawer.Navigator>
             </NavigationContainer>
           </SafeAreaView>

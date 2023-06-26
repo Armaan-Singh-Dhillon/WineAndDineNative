@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
-
+import DishType from "./types/dish";
 interface MyContextData {
-  dishData: any;
-  updateValue: (newValue: any) => void;
+  dishData: DishType[];
+  updateValue: (newValue: DishType[]) => void;
 }
 
 export const MyContext = createContext<MyContextData>({

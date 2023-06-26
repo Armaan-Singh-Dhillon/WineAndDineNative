@@ -1,15 +1,14 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  ScrollView,
-} from "react-native";
-import H1 from "../styling Components/H1";
+import { View, Image } from "react-native";
 import Paragraph from "../styling Components/Paragraph";
 
-const Cook: React.FC = () => {
+type CookProp = {
+  deliveryTime: number;
+  averageTimeToCook: number;
+  fatContent: number;
+  proteinContent: number;
+};
+
+const Cook: React.FC<CookProp> = (props: CookProp) => {
   return (
     <>
       <View
@@ -22,11 +21,12 @@ const Cook: React.FC = () => {
         }}
       >
         <View>
-          <Paragraph para="Delievery Time : 15 min" />
-          <Paragraph para="Avergae Time To Cook : 15 min" />
-          <Paragraph para="Fat Content : 15 min" />
-          <Paragraph para="Delievery Time : 15 min" />
-          <Paragraph para="Protein Content : 15 min" />
+          <Paragraph para={`Delievery Time : ${props.deliveryTime} min`} />
+          <Paragraph
+            para={`Average Time To Cook : ${props.averageTimeToCook} min`}
+          />
+          <Paragraph para={`Protein Content : ${props.proteinContent} g`} />
+          <Paragraph para={`Fat Content : ${props.fatContent} g`} />
         </View>
 
         <Image

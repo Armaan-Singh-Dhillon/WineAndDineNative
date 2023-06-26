@@ -3,8 +3,10 @@ import InnerH1 from "../styling Components/InnerH1";
 import ShopCard from "../components/ShopCard";
 import { MyContext } from "../MyContext";
 import { useContext } from "react";
+import DishType from "../types/dish";
 const Shop: React.FunctionComponent = () => {
   const { dishData } = useContext(MyContext);
+
   return (
     <>
       <ScrollView
@@ -42,6 +44,21 @@ const Shop: React.FunctionComponent = () => {
               source={require("../assets/banner/01-min-scaled.jpg")}
             />
           </View>
+
+          {dishData.map((el: DishType) => {
+            return (
+              <View key={el.id}>
+                <ShopCard
+                  id={el.id}
+                  TimeToCook={el.averageTimeToCook}
+                  name={el.name}
+                  price={el.price}
+                  tags={el.tags}
+                  imageName={el.image}
+                />
+              </View>
+            );
+          })}
         </View>
       </ScrollView>
     </>

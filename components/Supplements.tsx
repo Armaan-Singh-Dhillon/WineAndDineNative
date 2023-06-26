@@ -3,7 +3,22 @@ import H2 from "../styling Components/H2";
 import H4 from "../styling Components/H4";
 import Paragraph from "../styling Components/Paragraph";
 
-const Supplements = () => {
+type Beverage = {
+  name: string;
+  description: string;
+};
+
+type FoodDrink = {
+  name: string;
+  description: string;
+};
+
+type Supplements = {
+  beverages: Beverage[];
+  foodDrinks: FoodDrink[];
+};
+
+const Supplements: React.FC<Supplements> = (props: Supplements) => {
   const dishData = {
     supplements: {
       beverages: [
@@ -36,7 +51,7 @@ const Supplements = () => {
     <>
       <View>
         <H2 heading="Supplements" />
-        {dishData.supplements.foodDrinks.length != 0 && (
+        {props.foodDrinks.length != 0 && (
           <View>
             <Text
               style={{
@@ -48,7 +63,7 @@ const Supplements = () => {
               Food Drinks
             </Text>
             <View>
-              {dishData.supplements.foodDrinks.map((el, i) => {
+              {props.foodDrinks.map((el, i) => {
                 return (
                   <View key={i}>
                     <H4 heading={el.name} />
@@ -59,7 +74,7 @@ const Supplements = () => {
             </View>
           </View>
         )}
-        {dishData.supplements.beverages.length != 0 && (
+        {props.beverages.length != 0 && (
           <View>
             <Text
               style={{
@@ -71,7 +86,7 @@ const Supplements = () => {
               Beverages
             </Text>
             <View>
-              {dishData.supplements.beverages.map((el, i) => {
+              {props.beverages.map((el, i) => {
                 return (
                   <View key={i}>
                     <H4 heading={el.name} />
