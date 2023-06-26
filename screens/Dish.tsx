@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, Image, ScrollView } from "react-native";
 import H2 from "../styling Components/H2";
 import StarRating from "../components/Star";
 import InnerH3 from "../styling Components/InnerH3";
@@ -18,7 +11,10 @@ import Supplements from "../components/Supplements";
 import Review from "../components/Review";
 import SalesAndOffers from "../components/SalesAndOffers";
 import Toppings from "../components/Toppings";
+import { useMyContext } from "../MyContext";
 const Dish: React.FC = () => {
+  const { dishData } = useMyContext();
+  console.log(dishData);
   return (
     <>
       <ScrollView style={styles.root}>
