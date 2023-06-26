@@ -5,24 +5,18 @@ interface Button {
   clickHandler: () => void;
 }
 
-const Paragraph: React.FunctionComponent<Button> = (props: Button) => {
+const Button: React.FunctionComponent<Button> = (props: Button) => {
   return (
     <>
-      <View style={{ flexDirection: "row" ,width:'100%' }}>
-        <Pressable
-          onPress={props.clickHandler}
-          style={{
-            justifyContent: "flex-start",
-          }}
-        >
+      <View>
+        <Pressable onPress={props.clickHandler}>
           <Text
             style={{
               fontFamily: "primary",
               color: "#000",
               fontSize: 15,
-              marginBottom: 20,
               backgroundColor: "#dcc87a",
-              padding:10
+              padding: 10,
             }}
           >
             {props.text}
@@ -33,4 +27,4 @@ const Paragraph: React.FunctionComponent<Button> = (props: Button) => {
   );
 };
 
-export default Paragraph;
+export default Button;

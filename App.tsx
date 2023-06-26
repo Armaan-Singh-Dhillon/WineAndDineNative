@@ -1,8 +1,14 @@
-import { StyleSheet, View, Image, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { loadFonts } from "./expo-fonts";
 import Dish from "./screens/Dish";
 import Shop from "./screens/Shop";
@@ -14,7 +20,7 @@ import { getDocs, collection } from "firebase/firestore";
 import db from "./firebaseConfig";
 import { MyContext } from "./MyContext";
 import DishType from "./types/dish";
-
+import Subscription from "./screens/Subscription";
 export type DishStackParamList = {
   Shop: undefined;
   Dish: { id: string };
@@ -43,13 +49,13 @@ export default function App() {
     //   blogDataTemp = [...blogDataTemp, { id: doc.id, ...doc.data() }];
     // });
 
-    const querySnapshot2 = await getDocs(collection(db, "dishes"));
-    querySnapshot2.forEach((doc) => {
-      productData = [
-        ...productData,
-        { id: doc.id, show: false, ...doc.data() } as DishType,
-      ];
-    });
+    // const querySnapshot2 = await getDocs(collection(db, "dishes"));
+    // querySnapshot2.forEach((doc) => {
+    //   productData = [
+    //     ...productData,
+    //     { id: doc.id, show: false, ...doc.data() } as DishType,
+    //   ];
+    // });
     setDishData(productData);
 
     await fetchfonts();
@@ -147,7 +153,8 @@ export default function App() {
               >
                 {/* <Drawer.Screen name="Home" component={Home} /> */}
                 {/* <Drawer.Screen name="Menu" component={Menu} /> */}
-                <Drawer.Screen name="Our Shop" component={ShopScreens} />
+                {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
+                <Drawer.Screen name="Newsletter" component={Subscription} />
                 {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
               </Drawer.Navigator>
             </NavigationContainer>
@@ -161,8 +168,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "transparent",
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: "cover",
   },
 });
