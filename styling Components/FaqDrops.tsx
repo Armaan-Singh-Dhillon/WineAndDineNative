@@ -21,7 +21,10 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
   return (
     <View>
       {faqs.map((faq, index) => (
-        <View style={{ borderColor: "#dcc87a", borderWidth: 1, marginTop: 20 }}>
+        <View
+          key={index}
+          style={{ borderColor: "#dcc87a", borderWidth: 1, marginTop: 20 }}
+        >
           <TouchableOpacity
             key={index}
             style={styles.questionContainer}
