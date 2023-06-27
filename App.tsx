@@ -59,23 +59,23 @@ export default function App() {
   const fetchData = async () => {
     let blogDataTemp: BlogData[] = [];
     let productData: DishType[] = [];
-    const querySnapshot1 = await getDocs(collection(db, "Blog"));
-    querySnapshot1.forEach((doc) => {
-      blogDataTemp = [
-        ...blogDataTemp,
-        { id: doc.id, ...doc.data() } as BlogData,
-      ];
-    });
+    // const querySnapshot1 = await getDocs(collection(db, "Blog"));
+    // querySnapshot1.forEach((doc) => {
+    //   blogDataTemp = [
+    //     ...blogDataTemp,
+    //     { id: doc.id, ...doc.data() } as BlogData,
+    //   ];
+    // });
 
-    const querySnapshot2 = await getDocs(collection(db, "dishes"));
-    querySnapshot2.forEach((doc) => {
-      productData = [
-        ...productData,
-        { id: doc.id, show: false, ...doc.data() } as DishType,
-      ];
-    });
-    setDishData(productData);
-    setBlogData(blogDataTemp);
+    // const querySnapshot2 = await getDocs(collection(db, "dishes"));
+    // querySnapshot2.forEach((doc) => {
+    //   productData = [
+    //     ...productData,
+    //     { id: doc.id, show: false, ...doc.data() } as DishType,
+    //   ];
+    // });
+    // setDishData(productData);
+    // setBlogData(blogDataTemp);
 
     await fetchfonts();
   };
