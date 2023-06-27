@@ -8,21 +8,19 @@ interface Button {
 const Button: React.FunctionComponent<Button> = (props: Button) => {
   return (
     <>
-      <View>
-        <Pressable onPress={props.clickHandler}>
-          <Text
-            style={{
-              fontFamily: "primary",
-              color: "#000",
-              fontSize: 15,
-              backgroundColor: "#dcc87a",
-              padding: 10,
-            }}
-          >
-            {props.text}
-          </Text>
-        </Pressable>
-      </View>
+      <Pressable onPress={props.clickHandler}>
+        <Text
+          style={{
+            fontFamily: "primary",
+            color: "#000",
+            fontSize: 15,
+            backgroundColor: "#dcca87",
+            padding: 10,
+          }}
+        >
+          {props.text}
+        </Text>
+      </Pressable>
     </>
   );
 };

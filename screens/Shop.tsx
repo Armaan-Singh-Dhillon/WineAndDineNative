@@ -4,6 +4,7 @@ import ShopCard from "../components/ShopCard";
 import { MyContext } from "../MyContext";
 import { useContext } from "react";
 import DishType from "../types/dish";
+import Subscription from "./Subscription";
 const Shop: React.FunctionComponent = () => {
   const { dishData } = useContext(MyContext);
 
@@ -60,6 +61,7 @@ const Shop: React.FunctionComponent = () => {
             );
           })}
         </View>
+        <Subscription />
       </ScrollView>
     </>
   );

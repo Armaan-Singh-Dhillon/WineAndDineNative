@@ -9,14 +9,22 @@ import {
 import InnerH1 from "../styling Components/InnerH1";
 import { Ionicons } from "@expo/vector-icons";
 import Paragraph from "../styling Components/Paragraph";
-
+import Subscription from "./Subscription";
 import { Video, ResizeMode } from "expo-av";
 import Pointers from "../styling Components/Points";
 import React, { useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
+import { BlogStackParamList } from "../App";
+import { MyContext } from "../MyContext";
+import { useContext } from "react";
 const SingleBlog = () => {
-  const [videoSource, setVideoSource] = useState(
-    require("../assets/blogs/delicious-desserts/video.mp4")
-  );
+  const { blogData } = useContext(MyContext);
+  const route = useRoute<RouteProp<BlogStackParamList, "SingleBlog">>();
+  const desiredId = route.params.id;
+
+  const filteredObject = blogData.find((el) => el.id === desiredId)!;
+
   return (
     <>
       <ScrollView
@@ -40,18 +48,21 @@ const SingleBlog = () => {
               alignItems: "center",
             }}
           >
-            <InnerH1 heading="Delicious " />
+            <InnerH1 heading={filteredObject.name} />
           </View>
           <Image
             style={{ width: "100%", height: 200, opacity: 0.6 }}
             resizeMode="cover"
-            source={require("../assets/blogs/blog-test.jpg")}
+            source={require("../assets/background/blogbackground.jpg")}
           />
         </View>
-        <View>
+        <View style={{ marginTop: 20 }}>
           <Image
-            style={{ width: "100%", height: 350, marginTop: 20 }}
-            source={require("../assets/blogs/delicious-desserts/image1.jpg")}
+            style={{ width: "100%", height: 350 }}
+            resizeMode="cover"
+            source={{
+              uri: filteredObject.image1,
+            }}
           />
           <View style={styles.outer}>
             <View style={styles.inner}>
@@ -61,7 +72,9 @@ const SingleBlog = () => {
                 style={styles.icon}
                 color="#dcc87a"
               />
-              <Text style={styles.nameline}>Annalisa L</Text>
+              <Text style={styles.nameline}>
+                {filteredObject.writer.Postedby}
+              </Text>
             </View>
             <View style={styles.inner}>
               <Ionicons
@@ -70,58 +83,48 @@ const SingleBlog = () => {
                 size={25}
                 color="#dcc87a"
               />
-              <Text style={styles.nameline}>August 14 ,2021</Text>
+              <Text style={styles.nameline}>{filteredObject.date}</Text>
             </View>
           </View>
         </View>
         <View>
-          <Text style={styles.heading}>
-            Uncovering Hidden Gems In The Restaurant Scene
-          </Text>
+          <Text style={styles.heading}>{filteredObject.mainTitle}</Text>
         </View>
-        <Paragraph para="The process of uncovering hidden gems can involve several steps. First, food critics and bloggers may conduct research to find out about lesser-known restaurants in the area. " />
-        <Paragraph para="After visiting a hidden gem, food critics and bloggers may write about their experience in reviews, blog posts, or social media posts. They may also recommend the restaurant to others through word of mouth or by featuring it in articles or on their website." />
-        <Text style={styles.heading}>
-          Uncovering Hidden Gems In The Restaurant Scene
-        </Text>
+        <Paragraph para={filteredObject.intro} />
+        <Paragraph para={filteredObject.subpara} />
+        <Text style={styles.heading}>{filteredObject.subtitle1}</Text>
         <View>
-          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
-          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
-          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
-        </View>
-        <View>
-          <View style={styles.inner}></View>
+          <Pointers para={filteredObject.pointsintro.point1} />
+          <Pointers para={filteredObject.pointsintro.point2} />
+          <Pointers para={filteredObject.pointsintro.point3} />
         </View>
 
         <Video
-          source={videoSource}
+          source={{
+            uri: filteredObject.video,
+          }}
           style={{ width: "100%", height: 300 }}
           shouldPlay
           isLooping
         />
-        <Paragraph para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+        <Paragraph para={filteredObject.videopara} />
 
         <View style={styles.qouteContainer}>
-          <Text style={styles.quote}>
-            hole-in-wall eateries to hidden gems, join us on a journey to find
-            the hidden treasures that will tantalize your taste buds and leave
-            you hungry.”
-          </Text>
-          <Text style={styles.nameline}>-Annalisa L</Text>
+          <Text style={styles.quote}>{filteredObject.quote}</Text>
+          <Text style={styles.nameline}>-{filteredObject.writer.Postedby}</Text>
         </View>
-        <Paragraph para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
-        <Text style={styles.heading}>
-          Uncovering Hidden Gems In The Restaurant Scene
-        </Text>
+        <Paragraph para={filteredObject.outropara} />
+        <Text style={styles.heading}>{filteredObject.outroTitle}</Text>
         <View>
-          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
-          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
-          <Pointers para="Look beyond popular areas: While popular areas may have a lot of great restaurants, it's worth exploring lesser-known" />
+          <Pointers para={filteredObject.pointsoutro.point1} />
+          <Pointers para={filteredObject.pointsoutro.point2} />
+          <Pointers para={filteredObject.pointsoutro.point3} />
         </View>
         <View style={styles.qouteContainer}>
-          <Text style={styles.quote}>Final words</Text>
+          <Text style={styles.quote}>{filteredObject.finalWords}</Text>
         </View>
-        <Text style={styles.nameline}>-Annalisa L</Text>
+        <Text style={styles.nameline}>-{filteredObject.writer.Postedby}</Text>
+        <Subscription />
       </ScrollView>
     </>
   );

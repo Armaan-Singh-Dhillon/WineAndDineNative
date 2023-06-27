@@ -7,6 +7,7 @@ import wine from "../localData/wineAndCocktails";
 import cocktail from "../localData/cocktail";
 import apetizers from "../localData/apetizers";
 import mainCourses from "../localData/Maincourse";
+import Subscription from "./Subscription";
 const Menu: React.FunctionComponent = () => {
   const handleCLick = () => {};
 
@@ -71,6 +72,7 @@ const Menu: React.FunctionComponent = () => {
             return <MenuCard data={item} key={item.id.toString()} />;
           })}
         </View>
+        <Subscription />
       </ScrollView>
     </>
   );

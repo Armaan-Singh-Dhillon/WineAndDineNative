@@ -1,11 +1,11 @@
 import { Text, View, ScrollView, Image } from "react-native";
 import H1 from "../styling Components/H1";
 import H2 from "../styling Components/H2";
-import CardItem from "../components/CardItem";
 import Paragraph from "../styling Components/Paragraph";
 import Button from "../styling Components/Button";
 import H4 from "../styling Components/H4";
 import Quotes from "../styling Components/Quotes";
+import Subscription from "./Subscription";
 const Home: React.FunctionComponent = () => {
   const handleCLick = () => {};
   return (
@@ -24,13 +24,25 @@ const Home: React.FunctionComponent = () => {
             justifyContent: "space-between",
           }}
         >
-          <View style={{ flex: 1, marginBottom: 60, marginTop: 60 }}>
+          <View
+            style={{
+              flex: 1,
+              marginBottom: 60,
+              marginTop: 60,
+              alignItems: "flex-start",
+            }}
+          >
             <H1 heading={"Food That Surprise You"} />
 
-            <Paragraph para="Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus" />
-            <Button text="Explore Menu" clickHandler={handleCLick} />
-
-            <CardItem />
+            <Paragraph para="As you step into the elegant and contemporary space, you are immediately greeted by a warm and inviting ambiance. The meticulously designed interior, adorned with exquisite artwork and soft lighting, creates an intimate atmosphere that sets the stage for an unforgettable evening." />
+            <View>
+              <Button text="Explore Menu" clickHandler={handleCLick} />
+            </View>
+            <Image
+              style={{ width: "100%", maxWidth: 500, height: 450 }}
+              resizeMode="contain"
+              source={require("../assets/cusine/cusine.png")}
+            />
           </View>
           <View style={{ flex: 1, marginBottom: 60, marginTop: 60 }}>
             <H4 heading={"Chef's Word"} />
@@ -54,6 +66,7 @@ const Home: React.FunctionComponent = () => {
             />
           </View>
         </View>
+        <Subscription />
       </ScrollView>
     </>
   );

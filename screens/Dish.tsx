@@ -15,7 +15,7 @@ import { DishStackParamList } from "../App";
 import { useContext } from "react";
 import { MyContext } from "../MyContext";
 import DishType from "../types/dish";
-
+import Subscription from "./Subscription";
 const Dish: React.FC = () => {
   const { dishData } = useContext(MyContext);
   const route = useRoute<RouteProp<DishStackParamList, "Dish">>();
@@ -52,17 +52,17 @@ const Dish: React.FC = () => {
               fatContent={filteredObject.fatContent}
               proteinContent={filteredObject.protein}
             />
+
             <Ingredients ingredients={filteredObject.ingredients} />
             <Supplements
               beverages={filteredObject.supplements.beverages}
               foodDrinks={filteredObject.supplements.foodDrinks}
             />
-
             <Review reviews={filteredObject.reviews.customerReviews} />
-
             <SalesAndOffers salesAndOffers={filteredObject.salesAndOffers} />
           </View>
         </View>
+        <Subscription />
       </ScrollView>
     </>
   );

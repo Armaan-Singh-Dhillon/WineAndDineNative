@@ -24,44 +24,52 @@ type Ingredients = {
     cheese: Cheese[];
   };
 };
+function areAllArraysEmpty(ingredients: Ingredients): boolean {
+  const { herbs, spices, cheese } = ingredients.ingredients;
+  return herbs.length === 0 && spices.length === 0 && cheese.length === 0;
+}
 const Ingredients: React.FunctionComponent<Ingredients> = (
   props: Ingredients
 ) => {
-  return (
-    <>
-      <View>
-        <H2 heading="Ingredients" />
+  if (areAllArraysEmpty(props)) {
+    return <></>;
+  } else {
+    return (
+      <>
         <View>
-          {Object.entries(props.ingredients).map(([key, value], i) => {
-            if (value.length != 0) {
-              return (
-                <View key={i}>
-                  <Text
-                    style={{
-                      color: "#dcc87a",
-                      fontFamily: "primary",
-                      fontSize: 25,
-                    }}
-                  >
-                    {key}
-                  </Text>
+          <H2 heading="Ingredients" />
+          <View>
+            {Object.entries(props.ingredients).map(([key, value], i) => {
+              if (value.length != 0) {
+                return (
+                  <View key={i}>
+                    <Text
+                      style={{
+                        color: "#dcc87a",
+                        fontFamily: "primary",
+                        fontSize: 25,
+                      }}
+                    >
+                      {key}
+                    </Text>
 
-                  {value.map((el, i) => {
-                    return (
-                      <View key={i}>
-                        <H4 heading={el.name} />
-                        <Paragraph para={el.description} />
-                      </View>
-                    );
-                  })}
-                </View>
-              );
-            }
-          })}
+                    {value.map((el, i) => {
+                      return (
+                        <View key={i}>
+                          <H4 heading={el.name} />
+                          <Paragraph para={el.description} />
+                        </View>
+                      );
+                    })}
+                  </View>
+                );
+              }
+            })}
+          </View>
         </View>
-      </View>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default Ingredients;
