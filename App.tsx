@@ -59,23 +59,23 @@ export default function App() {
   const fetchData = async () => {
     let blogDataTemp: BlogData[] = [];
     let productData: DishType[] = [];
-    // const querySnapshot1 = await getDocs(collection(db, "Blog"));
-    // querySnapshot1.forEach((doc) => {
-    //   blogDataTemp = [
-    //     ...blogDataTemp,
-    //     { id: doc.id, ...doc.data() } as BlogData,
-    //   ];
-    // });
+    const querySnapshot1 = await getDocs(collection(db, "Blog"));
+    querySnapshot1.forEach((doc) => {
+      blogDataTemp = [
+        ...blogDataTemp,
+        { id: doc.id, ...doc.data() } as BlogData,
+      ];
+    });
 
-    // const querySnapshot2 = await getDocs(collection(db, "dishes"));
-    // querySnapshot2.forEach((doc) => {
-    //   productData = [
-    //     ...productData,
-    //     { id: doc.id, show: false, ...doc.data() } as DishType,
-    //   ];
-    // });
-    // setDishData(productData);
-    // setBlogData(blogDataTemp);
+    const querySnapshot2 = await getDocs(collection(db, "dishes"));
+    querySnapshot2.forEach((doc) => {
+      productData = [
+        ...productData,
+        { id: doc.id, show: false, ...doc.data() } as DishType,
+      ];
+    });
+    setDishData(productData);
+    setBlogData(blogDataTemp);
 
     await fetchfonts();
   };
@@ -167,13 +167,13 @@ export default function App() {
                   },
                 }}
               >
-                {/* <Drawer.Screen name="Home" component={Home} /> */}
-                {/* <Drawer.Screen name="Menu" component={Menu} /> */}
-                {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
-                {/* <Drawer.Screen name="Newsletter" component={Subscription} /> */}
-                {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
-                {/* <Drawer.Screen name="Our Laurels" component={Laurel} /> */}
-                {/* <Drawer.Screen name="FAQs" component={Faq} /> */}
+                <Drawer.Screen name="Home" component={Home} />
+                <Drawer.Screen name="Menu" component={Menu} />
+                <Drawer.Screen name="Our Shop" component={ShopScreens} />
+                <Drawer.Screen name="Newsletter" component={Subscription} />
+                <Drawer.Screen name="Our Blog" component={BlogScreens} />
+                <Drawer.Screen name="Our Laurels" component={Laurel} />
+                <Drawer.Screen name="FAQs" component={Faq} />
                 <Drawer.Screen name="Our History" component={History} />
               </Drawer.Navigator>
             </NavigationContainer>
