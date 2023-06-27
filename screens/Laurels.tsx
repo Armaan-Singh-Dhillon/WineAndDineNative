@@ -76,6 +76,7 @@ const Laurel: React.FunctionComponent = () => {
           <Text style={styles.title}>AA Hospitality</Text>
           <Paragraph para="We are honored to have received the AA Hospitality award, a symbol of excellence in the industry. With meticulous attention to detail and a passion for delivering impeccable service, we strive to create unforgettable dining experiences for our guests. Visit us and savor the finest flavors, complemented by an ambiance that reflects our commitment to hospitality." />
         </View>
+        <Subscription />
       </ScrollView>
     </>
   );

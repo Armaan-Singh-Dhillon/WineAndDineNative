@@ -24,6 +24,7 @@ import Subscription from "./screens/Subscription";
 import { BlogData } from "./types/blog";
 import { StatusBar } from "expo-status-bar";
 import Laurel from "./screens/Laurels";
+import Faq from "./screens/Faq";
 export type DishStackParamList = {
   Shop: undefined;
   Dish: { id: string };
@@ -170,7 +171,8 @@ export default function App() {
                 {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
                 {/* <Drawer.Screen name="Newsletter" component={Subscription} /> */}
                 {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
-                <Drawer.Screen name="Our Laurels" component={Laurel} />
+                {/* <Drawer.Screen name="Our Laurels" component={Laurel} /> */}
+                <Drawer.Screen name="FAQs" component={Faq} />
               </Drawer.Navigator>
             </NavigationContainer>
           </SafeAreaView>
