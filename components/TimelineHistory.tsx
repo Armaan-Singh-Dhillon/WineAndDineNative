@@ -1,95 +1,112 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import Timeline from "react-native-timeline-flatlist";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 
-export default function TimelineHistory() {
-  const timelineData = [
-    {
-      time: "1930",
-      title: "Restaurant Inauguration",
-      description: "The luxury restaurant opens its doors for the first time.",
-    },
-    {
-      time: "1940",
-      title: "Expansion of Cuisines",
-      description: "Introduction of French and Italian cuisines to the menu.",
-    },
-    {
-      time: "1955",
-      title: "Renovation and Redesign",
-      description:
-        "The restaurant undergoes a major renovation and revamps its interior design.",
-    },
-    {
-      time: "1962",
-      title: "Increase in Staff",
-      description:
-        "Expansion of the restaurant's team to cater to growing demand.",
-    },
-    {
-      time: "1975",
-      title: "Receiving Michelin Star",
-      description:
-        "The restaurant is awarded a prestigious Michelin star for culinary excellence.",
-    },
-    {
-      time: "1988",
-      title: "Launch of Signature Dish",
-      description:
-        "The restaurant introduces its iconic signature dish, becoming a customer favorite.",
-    },
-    {
-      time: "2005",
-      title: "Expansion to International Locations",
-      description:
-        "The restaurant opens branches in major cities around the world.",
-    },
-    {
-      time: "2012",
-      title: "Celebrity Chef Collaboration",
-      description:
-        "Renowned celebrity chef partners with the restaurant for an exclusive menu.",
-    },
-    {
-      time: "2020",
-      title: "Receiving James Beard Award",
-      description:
-        "The restaurant is honored with a prestigious James Beard Award.",
-    },
-  ];
+interface TimelineItemProps {
+  time: string;
+  title: string;
+  description: string;
+}
+
+const TimelineItem: React.FC<TimelineItemProps> = ({
+  time,
+  title,
+  description,
+}) => {
+  return (
+    <View style={styles.itemContainer}>
+      <View style={styles.circle} />
+      <View style={styles.itemContent}>
+        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </View>
+    </View>
+  );
+};
+
+interface TimelineProps {
+  data: TimelineItemProps[];
+}
+
+const Timeline: React.FC<TimelineProps> = ({ data }) => {
+  const renderTimelineItems = () => {
+    return data.map((item, index) => (
+      <View key={index} style={styles.itemWrapper}>
+        <TimelineItem {...item} />
+      </View>
+    ));
+  };
 
   return (
     <View style={styles.container}>
-      <Timeline
-        data={timelineData}
-        circleSize={10}
-        circleColor="#dcc87a"
-        lineColor="#dcc87a"
-        timeContainerStyle={{ minWidth: 91, marginTop: -5 }}
-        timeStyle={{
-          textAlign: "center",
-          color: "white",
-          padding: 5,
-          fontFamily: "secondary",
-        }}
-        descriptionStyle={{ color: "#aaa", fontFamily: "secondary" }}
-        lineWidth={1}
-        columnFormat="single-column-left"
-        separator={true}
-        titleStyle={{
-          fontSize: 15,
-          color: "#dcc87a",
-          fontFamily: "primary",
-        }}
-      />
+      <View style={styles.timelineContainer}>
+        <View style={styles.verticalLine} />
+        {renderTimelineItems()}
+      </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
     backgroundColor: "#000",
   },
+  timelineContainer: {
+    position: "relative",
+  },
+  itemWrapper: {
+    flexDirection: "row",
+    marginBottom: 16,
+    alignItems: "center",
+  },
+  verticalLine: {
+    position: "absolute",
+    left: 4,
+    top: 0,
+    width: 1,
+    height: "100%",
+    backgroundColor: "#aaa",
+  },
+  circle: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#dcc87a",
+    marginRight: 12,
+    alignSelf: "flex-start",
+    zIndex: 1,
+  },
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  itemContent: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#aaa",
+    borderRadius: 8,
+    padding: 12,
+  },
+  time: {
+    fontSize: 16,
+    fontFamily: "secondary",
+    marginBottom: 8,
+    color: "#dcc87a",
+  },
+  title: {
+    fontSize: 22,
+    fontFamily: "primary",
+    marginBottom: 8,
+    color: "#dcc87a",
+  },
+  description: {
+    fontSize: 14,
+    fontFamily: "secondary",
+    color: "#aaa",
+  },
 });
+
+export default Timeline;
