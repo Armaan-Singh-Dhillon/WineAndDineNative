@@ -23,6 +23,7 @@ import DishType from "./types/dish";
 import Subscription from "./screens/Subscription";
 import { BlogData } from "./types/blog";
 import { StatusBar } from "expo-status-bar";
+import Laurel from "./screens/Laurels";
 export type DishStackParamList = {
   Shop: undefined;
   Dish: { id: string };
@@ -164,11 +165,12 @@ export default function App() {
                   },
                 }}
               >
-                <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Menu" component={Menu} />
-                <Drawer.Screen name="Our Shop" component={ShopScreens} />
-                <Drawer.Screen name="Newsletter" component={Subscription} />
-                <Drawer.Screen name="Our Blog" component={BlogScreens} />
+                {/* <Drawer.Screen name="Home" component={Home} /> */}
+                {/* <Drawer.Screen name="Menu" component={Menu} /> */}
+                {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
+                {/* <Drawer.Screen name="Newsletter" component={Subscription} /> */}
+                {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
+                <Drawer.Screen name="Our Laurels" component={Laurel} />
               </Drawer.Navigator>
             </NavigationContainer>
           </SafeAreaView>
