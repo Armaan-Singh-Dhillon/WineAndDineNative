@@ -8,7 +8,7 @@ import {
   Pressable,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
+import { doc, getDoc } from "firebase/firestore";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -33,6 +33,10 @@ import History from "./screens/History";
 import Button from "./styling Components/Button";
 import H1 from "./styling Components/H1";
 import Paragraph from "./styling Components/Paragraph";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { User } from "./types/user";
 export type DishStackParamList = {
   Shop: undefined;
   Dish: { id: string };
@@ -51,6 +55,21 @@ export default function App() {
   const [dishData, setDishData] = useState<DishType[]>([]);
   const [blogData, setBlogData] = useState<BlogData[]>([]);
   const [isModal, setVisibility] = useState(false);
+  const [isAccount, setAccount] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const auth = getAuth();
+
+  const updateUser = (newValue: User) => {
+    setUser(newValue);
+  };
+  const updateLoggedIn = (newValue: boolean) => {
+    setLoggedIn(newValue);
+  };
+
+  const updateAccount = () => {
+    setAccount(!isAccount);
+  };
   const updateVisibility = () => {
     setVisibility(!isModal);
   };
@@ -60,6 +79,13 @@ export default function App() {
 
   const updateBlogData = (newValue: BlogData[]) => {
     setBlogData(newValue);
+  };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const fetchfonts = async () => {
@@ -92,6 +118,21 @@ export default function App() {
 
   useEffect(() => {
     fetchData();
+    onAuthStateChanged(auth, async (user) => {
+      setloading(true);
+      updateLoggedIn(false);
+      if (user) {
+        const res = await getDoc(doc(db, "user", user.uid));
+
+        setUser({ ...res.data(), id: user.uid } as User);
+        updateLoggedIn(true);
+      } else {
+        setUser(null);
+      }
+      setTimeout(() => {
+        setloading(false);
+      }, 4000);
+    });
   }, []);
 
   const ShopScreens = () => {
@@ -149,7 +190,13 @@ export default function App() {
             dishData,
             updateDishData,
             blogData,
+            isModal,
+            updateVisibility,
             updateBlogData,
+            user,
+            updateUser,
+            isLoggedIn,
+            updateLoggedIn,
           }}
         >
           <SafeAreaView style={{ flex: 1 }}>
@@ -176,17 +223,20 @@ export default function App() {
                     fontSize: 20,
                   },
                   headerRight: () => (
-                    <Button text="Login" clickHandler={updateVisibility} />
+                    <Button
+                      text={`${isLoggedIn ? "Logout" : "Login"}`}
+                      clickHandler={isLoggedIn ? logout : updateVisibility}
+                    />
                   ),
                 }}
               >
                 <Drawer.Screen name="Home" component={Home} />
-                {/* <Drawer.Screen name="Menu" component={Menu} /> */}
-                {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
-                {/* <Drawer.Screen name="Newsletter" component={Subscription} /> */}
-                {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
-                {/* <Drawer.Screen name="Our Laurels" component={Laurel} /> */}
-                {/* <Drawer.Screen name="FAQs" component={Faq} /> */}
+                <Drawer.Screen name="Menu" component={Menu} />
+                <Drawer.Screen name="Our Shop" component={ShopScreens} />
+                <Drawer.Screen name="Newsletter" component={Subscription} />
+                <Drawer.Screen name="Our Blog" component={BlogScreens} />
+                <Drawer.Screen name="Our Laurels" component={Laurel} />
+                <Drawer.Screen name="FAQs" component={Faq} />
                 <Drawer.Screen name="Our History" component={History} />
               </Drawer.Navigator>
             </NavigationContainer>
@@ -199,7 +249,12 @@ export default function App() {
                   paddingRight: 15,
                 }}
               >
-                <H1 heading="i am a modal" />
+                {isAccount ? (
+                  <Login changeLogic={updateAccount} />
+                ) : (
+                  <SignUp changeLogic={updateAccount} />
+                )}
+
                 <View
                   style={{
                     position: "absolute",

@@ -5,11 +5,13 @@ interface Button {
   handleChange: (text: string) => void;
 }
 
-const Input: React.FunctionComponent<Button> = (props: Button) => {
+const DInput: React.FunctionComponent<Button> = (props: Button) => {
   return (
     <>
       <TextInput
         cursorColor={"#dcc87a"}
+        keyboardType="phone-pad"
+        secureTextEntry={true}
         placeholder={props.text}
         placeholderTextColor={"#aaa"}
         onChangeText={(text) => props.handleChange(text)}
@@ -27,4 +29,4 @@ const Input: React.FunctionComponent<Button> = (props: Button) => {
   );
 };
 
-export default Input;
+export default DInput;
