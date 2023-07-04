@@ -2,7 +2,7 @@ import { Text, View, Pressable } from "react-native";
 
 interface Button {
   text: string;
-  clickHandler: () => void;
+  clickHandler?: () => void;
 }
 
 const Button: React.FunctionComponent<Button> = (props: Button) => {
