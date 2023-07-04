@@ -4,7 +4,11 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  Modal,
+  Pressable,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -26,6 +30,9 @@ import { StatusBar } from "expo-status-bar";
 import Laurel from "./screens/Laurels";
 import Faq from "./screens/Faq";
 import History from "./screens/History";
+import Button from "./styling Components/Button";
+import H1 from "./styling Components/H1";
+import Paragraph from "./styling Components/Paragraph";
 export type DishStackParamList = {
   Shop: undefined;
   Dish: { id: string };
@@ -43,7 +50,10 @@ export default function App() {
   const [loading, setloading] = useState(true);
   const [dishData, setDishData] = useState<DishType[]>([]);
   const [blogData, setBlogData] = useState<BlogData[]>([]);
-
+  const [isModal, setVisibility] = useState(false);
+  const updateVisibility = () => {
+    setVisibility(!isModal);
+  };
   const updateDishData = (newValue: DishType[]) => {
     setDishData(newValue);
   };
@@ -165,18 +175,52 @@ export default function App() {
                     fontFamily: "primary",
                     fontSize: 20,
                   },
+                  headerRight: () => (
+                    <Button text="Login" clickHandler={updateVisibility} />
+                  ),
                 }}
               >
                 <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Menu" component={Menu} />
-                <Drawer.Screen name="Our Shop" component={ShopScreens} />
-                <Drawer.Screen name="Newsletter" component={Subscription} />
-                <Drawer.Screen name="Our Blog" component={BlogScreens} />
-                <Drawer.Screen name="Our Laurels" component={Laurel} />
-                <Drawer.Screen name="FAQs" component={Faq} />
+                {/* <Drawer.Screen name="Menu" component={Menu} /> */}
+                {/* <Drawer.Screen name="Our Shop" component={ShopScreens} /> */}
+                {/* <Drawer.Screen name="Newsletter" component={Subscription} /> */}
+                {/* <Drawer.Screen name="Our Blog" component={BlogScreens} /> */}
+                {/* <Drawer.Screen name="Our Laurels" component={Laurel} /> */}
+                {/* <Drawer.Screen name="FAQs" component={Faq} /> */}
                 <Drawer.Screen name="Our History" component={History} />
               </Drawer.Navigator>
             </NavigationContainer>
+            <Modal visible={isModal} animationType="slide">
+              <View
+                style={{
+                  backgroundColor: "#242424",
+                  flex: 1,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                }}
+              >
+                <H1 heading="i am a modal" />
+                <View
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                  }}
+                >
+                  <Pressable onPress={updateVisibility}>
+                    <Ionicons
+                      name="close-circle-outline"
+                      size={30}
+                      color="#dcc87a"
+                    />
+                  </Pressable>
+                </View>
+                <View>
+                  <Pressable onPress={updateVisibility}>
+                    <Paragraph para="Close" />
+                  </Pressable>
+                </View>
+              </View>
+            </Modal>
           </SafeAreaView>
         </MyContext.Provider>
       </>

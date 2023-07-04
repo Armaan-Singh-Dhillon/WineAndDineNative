@@ -4,6 +4,7 @@ import { BlogData } from "./types/blog";
 interface MyContextData {
   dishData: DishType[];
   blogData: BlogData[];
+
   updateDishData: (newValue: DishType[]) => void;
   updateBlogData: (newValue: BlogData[]) => void;
 }
@@ -11,6 +12,7 @@ interface MyContextData {
 export const MyContext = createContext<MyContextData>({
   dishData: [],
   blogData: [],
+
   updateDishData: () => {},
   updateBlogData: () => {},
 });
