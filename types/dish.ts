@@ -59,6 +59,7 @@ type Options = {
   spiceLevel: string[];
 };
 
+
 type Dish = {
   id: string;
   image: string;
@@ -77,6 +78,7 @@ type Dish = {
   fatContent: number;
   protein: number;
   salesAndOffers: SalesAndOffer[];
+
 };
 
 

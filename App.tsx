@@ -24,7 +24,6 @@ import { getDocs, collection } from "firebase/firestore";
 import db from "./firebaseConfig";
 import { MyContext } from "./MyContext";
 import DishType from "./types/dish";
-import Subscription from "./screens/Subscription";
 import { BlogData } from "./types/blog";
 import { StatusBar } from "expo-status-bar";
 import Laurel from "./screens/Laurels";
@@ -35,6 +34,7 @@ import H1 from "./styling Components/H1";
 import Paragraph from "./styling Components/Paragraph";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Newsletter from "./screens/Newsletter";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { User } from "./types/user";
 export type DishStackParamList = {
@@ -114,10 +114,7 @@ export default function App() {
     setBlogData(blogDataTemp);
 
     await fetchfonts();
-  };
 
-  useEffect(() => {
-    fetchData();
     onAuthStateChanged(auth, async (user) => {
       setloading(true);
       updateLoggedIn(false);
@@ -133,6 +130,10 @@ export default function App() {
         setloading(false);
       }, 4000);
     });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const ShopScreens = () => {
@@ -233,14 +234,14 @@ export default function App() {
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Menu" component={Menu} />
                 <Drawer.Screen name="Our Shop" component={ShopScreens} />
-                <Drawer.Screen name="Newsletter" component={Subscription} />
                 <Drawer.Screen name="Our Blog" component={BlogScreens} />
                 <Drawer.Screen name="Our Laurels" component={Laurel} />
                 <Drawer.Screen name="FAQs" component={Faq} />
+                <Drawer.Screen name="Newsletter" component={Newsletter} />
                 <Drawer.Screen name="Our History" component={History} />
               </Drawer.Navigator>
             </NavigationContainer>
-            <Modal visible={isModal} animationType="slide">
+            <Modal visible={isModal} animationType="fade">
               <View
                 style={{
                   backgroundColor: "#242424",

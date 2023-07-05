@@ -1,3 +1,12 @@
+export type Comment = {
+   id:string;
+   name:string;
+   review:string;
+   email:string;
+   rating:number;
+   date:string;
+}
+
 export type BlogData = {
   id:string;
   date: string;
@@ -30,5 +39,6 @@ export type BlogData = {
   Postedby:string;
 
   };
+  comments : Comment[]
   
 };

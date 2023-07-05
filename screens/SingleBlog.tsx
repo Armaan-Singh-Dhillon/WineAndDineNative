@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   SafeAreaView,
+  Alert,
 } from "react-native";
 import InnerH1 from "../styling Components/InnerH1";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,12 +19,62 @@ import { RouteProp } from "@react-navigation/native";
 import { BlogStackParamList } from "../App";
 import { MyContext } from "../MyContext";
 import { useContext } from "react";
+import Comments from "../components/Comments";
+import AddComments from "../components/AddComments";
+import { doc, updateDoc } from "firebase/firestore";
+import db from "../firebaseConfig";
+import { Comment } from "../types/blog";
+import H2 from "../styling Components/H2";
+
+export const prettyDate = (arg: Date) => {
+  const currentDate: Date = arg;
+  const year: number = currentDate.getFullYear();
+  const month: string = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day: string = String(currentDate.getDate()).padStart(2, "0");
+  const formattedDate: string = `${year}-${month}-${day}`;
+  return formattedDate;
+};
 const SingleBlog = () => {
-  const { blogData } = useContext(MyContext);
+  const { blogData, isLoggedIn, updateVisibility, user } =
+    useContext(MyContext);
+  const [comment, setComment] = useState("");
+  const updateComment = (t: string) => {
+    setComment(t);
+  };
+  let commentArray: Comment[] = [];
   const route = useRoute<RouteProp<BlogStackParamList, "SingleBlog">>();
   const desiredId = route.params.id;
 
   const filteredObject = blogData.find((el) => el.id === desiredId)!;
+
+  commentArray = [...filteredObject.comments];
+  const submitHandler = async () => {
+    if (isLoggedIn) {
+      commentArray = [
+        ...commentArray,
+        {
+          id: user?.id,
+          name: user?.name,
+          review: comment,
+          email: user?.email,
+          date: prettyDate(new Date()),
+          rating: 4,
+        } as Comment,
+      ];
+      Alert.alert("Review Shortly", "Your Review Will Be Displayed Shortly", [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
+      const docRef = doc(db, "Blog", filteredObject.id);
+      await updateDoc(docRef, { comments: commentArray });
+    } else {
+      updateVisibility();
+    }
+  };
 
   return (
     <>
@@ -124,6 +175,9 @@ const SingleBlog = () => {
           <Text style={styles.quote}>{filteredObject.finalWords}</Text>
         </View>
         <Text style={styles.nameline}>-{filteredObject.writer.Postedby}</Text>
+        {commentArray.length != 0 && <Comments comment={commentArray} />}
+        <AddComments bind={updateComment} onSubmit={submitHandler} />
+
         <Subscription />
       </ScrollView>
     </>

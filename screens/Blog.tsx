@@ -66,9 +66,9 @@ const Blog: React.FunctionComponent = () => {
           </View>
         </View>
 
-        {blogData.map((el) => {
+        {blogData.map((el, i) => {
           return (
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginTop: 20 }} key={i}>
               <Pressable onPress={() => handleNavigation(el.id)}>
                 <Image
                   style={{ width: "100%", height: 350 }}

@@ -3,10 +3,10 @@ import Input from "../styling Components/Input";
 import Button from "../styling Components/Button";
 import { Ionicons } from "@expo/vector-icons";
 
-const Subscription: React.FunctionComponent = () => {
+const Newsletter: React.FunctionComponent = () => {
   const handleCLick = () => {};
   return (
-    <>
+    <ScrollView style={{ flex: 1, backgroundColor: "#000" }}>
       <View
         style={{
           borderColor: "#dcc87a",
@@ -69,7 +69,7 @@ const Subscription: React.FunctionComponent = () => {
         <Text style={styles.text}>Saturday-Sunday:</Text>
         <Text style={styles.text}>07:00am -11:00 pm</Text>
       </View>
-    </>
+    </ScrollView>
   );
 };
 
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
   section: { marginTop: 25 },
 });
 
-export default Subscription;
+export default Newsletter;

@@ -6,6 +6,7 @@ import Button from "../styling Components/Button";
 import H4 from "../styling Components/H4";
 import Quotes from "../styling Components/Quotes";
 import Subscription from "./Subscription";
+
 import InnerH1 from "../styling Components/InnerH1";
 import FAQ from "../styling Components/FaqDrops";
 const Faq: React.FunctionComponent = () => {
