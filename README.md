@@ -36,25 +36,26 @@ Run the app on an Emulator or a Physical Device
 
 ## Screenshots
 
-![Wine and Dine](screenshots/Screenshot_1688304816.png)
-![Wine and Dine](screenshots/Screenshot_1688304830.png)
-![Wine and Dine](screenshots/Screenshot_1688304839.png)
-![Wine and Dine](screenshots/Screenshot_1688304843.png)
-![Wine and Dine](screenshots/Screenshot_1688304856.png)
-![Wine and Dine](screenshots/Screenshot_1688304866.png)
-![Wine and Dine](screenshots/Screenshot_1688304869.png)
-![Wine and Dine](screenshots/Screenshot_1688304884.png)
-![Wine and Dine](screenshots/Screenshot_1688304899.png)
-![Wine and Dine](screenshots/Screenshot_1688304905.png)
-![Wine and Dine](screenshots/Screenshot_1688304909.png)
-![Wine and Dine](screenshots/Screenshot_1688304913.png)
-![Wine and Dine](screenshots/Screenshot_1688304922.png)
-![Wine and Dine](screenshots/Screenshot_1688304934.png)
-![Wine and Dine](screenshots/Screenshot_1688304952.png)
-![Wine and Dine](screenshots/Screenshot_1688304959.png)
-![Wine and Dine](screenshots/Screenshot_1688304965.png)
-![Wine and Dine](screenshots/Screenshot_1688304980.png)
-![Wine and Dine](screenshots/Screenshot_1688304984.png)
+
+<img src="screenshots/Screenshot_1688304816.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304830.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304839.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304843.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304856.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304866.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304869.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304884.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304899.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304905.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304909.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304913.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304922.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304934.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304952.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304959.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304965.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304980.png" alt="Wine and Dine" style="width: 50%;" />
+<img src="screenshots/Screenshot_1688304984.png" alt="Wine and Dine" style="width: 50%;" />
 
 ## Color Reference
 
